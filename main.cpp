@@ -33,6 +33,7 @@ int main() {
             case 2:
                 char name[100];
                 int score;
+                cin.ignore();
                 cout << "\n\033[32m2 - Ajouter un score \n\n\033[0m";
                 cout << "Entrez le nom du joueur : ";
                 cin.getline(name, 100);
