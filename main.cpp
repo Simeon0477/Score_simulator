@@ -3,14 +3,16 @@
 #include "header/score_board.hpp"
 
 ScoreBoard scoreBoard;
-
-int choix;
+int choix, ind;
+Score* best;
 
 int main() {
     cout << "\033[35m******** Simulateur de Scores ******** \n\033[0m";
     scoreBoard.addScore("Alice", 150);
     scoreBoard.addScore("Bob", 200);
     scoreBoard.addScore("Charlie", 100);
+    scoreBoard.addScore("Goat", 1000);
+    scoreBoard.addScore("LilGoat", 500);
 
     while (1) {
         //Menu
@@ -45,10 +47,29 @@ int main() {
                                             
             case 3:
                 cout << "\n\033[32m3 - Rechercher le meilleur score \n\n\033[0m";
+                best = scoreBoard.bestScore();
+                cout << "BEST SCORE :\n";
+                cout << "Player: " 
+                     << best->player 
+                     << "| Score: " 
+                     << best->score 
+                     << endl;
                 break;
                 
             case 4:
                 cout << "\n\033[32m3 - Supprimer un score \n\n\033[0m";
+                //Entrée de l'index du score
+                while(1){
+                    printf("Entrez l'index du score à supprimer : ");
+                    scanf("%d", &ind);
+                    if (ind < 1 || ind > scoreBoard.nb_scores) {
+                        printf("Index invalide, réessayez\n");
+                    }else{
+                        break;
+                    }
+                }
+
+                scoreBoard.deleteScore(ind);
                 break;
 
             case 5:

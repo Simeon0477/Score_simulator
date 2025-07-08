@@ -17,9 +17,11 @@ class ScoreBoard {
     private:
         Score** board;
         int capacity = 10;
-        int nb_scores = 0;
 
     public:
+        //Nombre de scores enregistrés
+        int nb_scores = 0;
+
         //Constructeur
         ScoreBoard() {
             board = new Score*[capacity];
@@ -64,6 +66,28 @@ class ScoreBoard {
                 return board[index]; 
             }
             return nullptr;
+        }
+
+        //Suppression d'un score
+        void deleteScore(int index) {
+            delete[] board[index - 1];
+            for (int i = index - 1; i < nb_scores - 1; i++) {
+                board[i] = board[i + 1];
+            }
+            nb_scores--;
+        }
+
+        //Recherche du meilleur score
+        Score* bestScore() {
+            Score* best = board[0];
+            //Recherche de la valeur maximale
+            for(int i = 1; i < nb_scores; i++) {
+                if(best->score < board[i]->score){
+                    best = board[i];
+                }
+            }
+
+            return best;
         }
 
         //Destructeur 
