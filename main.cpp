@@ -8,11 +8,7 @@ Score* best;
 
 int main() {
     cout << "\033[35m******** Simulateur de Scores ******** \n\033[0m";
-    scoreBoard.addScore("Alice", 150);
-    scoreBoard.addScore("Bob", 200);
-    scoreBoard.addScore("Charlie", 100);
-    scoreBoard.addScore("Goat", 1000);
-    scoreBoard.addScore("LilGoat", 500);
+    scoreBoard.loadBoard();
 
     while (1) {
         //Menu
@@ -42,7 +38,6 @@ int main() {
                 cout << "Entrez la valeur de votre score : ";
                 cin >> score;
                 scoreBoard.addScore(name, score);
-
                 break;
                                             
             case 3:

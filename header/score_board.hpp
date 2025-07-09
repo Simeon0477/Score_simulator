@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <cstring>
+#include <fstream>
 
 using namespace std;
 
@@ -47,6 +48,7 @@ class ScoreBoard {
             strcpy(board[nb_scores]->player, player);
             board[nb_scores]->score = score;
             nb_scores++;
+            saveBoard();
         }
 
         //Affichage des scores
@@ -75,6 +77,7 @@ class ScoreBoard {
                 board[i] = board[i + 1];
             }
             nb_scores--;
+            saveBoard();
         }
 
         //Recherche du meilleur score
@@ -88,6 +91,42 @@ class ScoreBoard {
             }
 
             return best;
+        }
+
+        //Chargement du tableau de scores
+        void loadBoard() {
+            ifstream file("./saved/save.txt");
+            if (!file) {
+                cerr << "Erreur d'ouverture du fichier\n";
+                return;
+            }
+
+            char playerName[100];
+            int playerScore;
+            while (file >> playerName >> playerScore) {
+                growth();
+                board[nb_scores] = new Score;
+                strcpy(board[nb_scores]->player, playerName);
+                board[nb_scores]->score = playerScore;
+                nb_scores++;
+            }
+
+            file.close();
+        }
+
+        //Sauvegarde du tableau de scores
+        void saveBoard() {
+            ofstream file("./saved/save.txt");
+            if (!file) {
+                cerr << "Erreur d'ouverture du fichier\n";
+                return;
+            }
+
+            for (int i = 0; i < nb_scores; i++) {
+                file << board[i]->player << " " << board[i]->score << "\n";
+            }
+
+            file.close();
         }
 
         //Destructeur 
