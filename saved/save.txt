@@ -1,6 +1,3 @@
-Alice 150
-Bob 200
-Charlie 100
 Goat 1000
 LilGoat 500
 BigManBlastoise 950
