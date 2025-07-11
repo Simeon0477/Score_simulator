@@ -6,3 +6,4 @@ LilGoat 500
 BigManBlastoise 950
 BigBadVenusaur 900
 BigBodyCharizard 900
+NNS 1050
