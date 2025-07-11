@@ -54,7 +54,8 @@ class ScoreBoard {
         //Affichage des scores
         void showScore() const{
             for (int i = 0; i < nb_scores; i++) { 
-                cout << "Player: " 
+                cout << i + 1
+                     << " : Player: " 
                      << board[i]->player 
                      << "| Score: " 
                      << board[i]->score 
